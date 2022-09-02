@@ -1,0 +1,9 @@
+.active-custom{
+    background-color: hsl(var(--nc));
+    color: hsl(var(--b1));
+    border-radius: .2rem;
+    padding: 0 0.625rem ;
+}
+.active-custom:hover span{
+    border-color:  hsl(var(--b1));
+}
