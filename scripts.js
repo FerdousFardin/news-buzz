@@ -36,8 +36,9 @@ const loadDetails = async (postId) => {
     `https://openapi.programming-hero.com/api/news/${postId}`
   );
   const data = await res.json();
-  console.log(data.data);
+  displayDetails(data.data[0]);
 };
+
 const tabActiveToggler = (shouldHave) => {
   const tabs = document.querySelectorAll(".tab");
   tabs.forEach((tab) => {
@@ -45,6 +46,20 @@ const tabActiveToggler = (shouldHave) => {
   });
   const activeTab = document.querySelector(`#${shouldHave}`);
   activeTab.classList.add("tab-active-custom");
+};
+const displayDetails = (article) => {
+  // console.log(article);
+  const modalContainer = document.getElementById("modal-section");
+  modalContainer.textContent = "";
+  const { title, image_url: mainImg, details } = article;
+  const modalLabel = document.createElement("label");
+  modalLabel.classList.add("modal-box", "relative");
+  modalLabel.innerHTML = `
+  <img src="${mainImg}" alt="Album" />
+  <h3 class="text-lg font-bold my-2">${title}</h3>
+    <p class="py-4">${details}</p>
+  `;
+  modalContainer.append(modalLabel);
 };
 const displayNews = (articles, elementId) => {
   //active class toggler
@@ -105,7 +120,7 @@ const displayNews = (articles, elementId) => {
                   totalView ? totalView + "+" : "No Views"
                 }</div>
                 </button>
-                <button onclick="loadDetails('${postId}')" class="btn btn-primary">Show Details</button>
+                <label for="my-modal-4" onclick="loadDetails('${postId}')" class="btn btn-primary modal-button">Show Details</label>
                 </div>
     `;
     articlesContainer.append(articleDiv);
