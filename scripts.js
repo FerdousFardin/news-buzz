@@ -31,6 +31,13 @@ const loadNews = async (categoryId, elementId) => {
   const data = await res.json();
   displayNews(data.data, elementId);
 };
+const loadDetails = async (postId) => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/news/${postId}`
+  );
+  const data = await res.json();
+  console.log(data.data);
+};
 const tabActiveToggler = (shouldHave) => {
   const tabs = document.querySelectorAll(".tab");
   tabs.forEach((tab) => {
@@ -44,9 +51,7 @@ const displayNews = (articles, elementId) => {
   tabActiveToggler(elementId);
   //spinner
   //display articles
-  articles.sort((a, b) => {
-    return b.total_view - a.total_view;
-  });
+  articles.sort((a, b) => b.total_view - a.total_view);
   const articlesContainer = document.getElementById("articles-container");
   articlesContainer.innerHTML = "";
   articles.forEach((article) => {
@@ -73,15 +78,21 @@ const displayNews = (articles, elementId) => {
   </figure>
   <div class="card-body">
   
-    <h2 class="card-title">${title}<span class="flex gap-1"><div class="badge">${
+    <h2 class="card-title">${title}<span class="flex gap-1"><div class="badge lg:badge-lg">${
       is_todays_pick ? "Todays Pick" : "Latest"
     }</div>
-      <div class="badge badge-outline">${
+      <div class="badge lg:badge-lg badge-outline">${
         is_trending ? "Trending Now" : "News"
       }</div></span></h2>
     <p>${details.length > 300 ? details.slice(0, 250) + "..." : details}</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Show Details</button>
+    <div class="card-actions justify-between">
+    <div>
+    <button class="btn gap-2">
+    <i class="fa-solid fa-eye"></i>
+    <div class="badge">${totalView ? totalView + "+" : "No Views"}</div>
+    </button>
+    </div>
+      <button onclick="loadDetails('${postId}')" class="btn btn-primary">Show Details</button>
     </div>
   </div>
     `;

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css"
       rel="stylesheet"
       type="text/css"
     />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/d053072c7b.js"
+      crossorigin="anonymous"
+    ></script>
     <title>News Buzz!</title>
   </head>
   <body>
@@ -26,7 +31,16 @@
               ></a
             >
           </div>
-          <div class="flex-none gap-5">
+          <div class="flex-none gap-5 mx-2">
+            <i class="fa-regular fa-sun"></i>
+            <div class="inline-block w-10">
+              <span data-toggle-theme="pastel,dark" data-act-class="pl-4" class="border rounded-full border-neutral-content flex items-center cursor-pointer w-10 transition-all duration-300 ease-in-out pl-0">
+                <span class="rounded-full w-3 h-3 m-1 bg-neutral-content">
+                </span>
+              </span>
+            </div>
+            <i class="fa-solid fa-cloud-moon"></i>
+          </div>
             <div
               class="flex gap-5 text-lg lg:text-xl font-medium lg:font-semibold"
             >
@@ -78,5 +92,6 @@
     </main>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./scripts.js"></script>
+   
   </body>
 </html>
