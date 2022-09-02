@@ -7,3 +7,8 @@
 .active-custom:hover span{
     border-color:  hsl(var(--b1));
 }
+.tab-active-custom{
+    background-color: hsl(var(--nc));
+    color: hsl(var(--b1));
+    border-radius: .4rem;
+}
