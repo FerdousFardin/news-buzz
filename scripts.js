@@ -44,8 +44,49 @@ const displayNews = (articles, elementId) => {
   tabActiveToggler(elementId);
   //spinner
   //display articles
+  articles.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   const articlesContainer = document.getElementById("articles-container");
   articlesContainer.innerHTML = "";
-  articles.forEach((article) => {});
+  articles.forEach((article) => {
+    const {
+      _id: postId,
+      others_info: { is_todays_pick, is_trending },
+      total_view: totalView,
+      title,
+      author: { name, img: authorImg },
+      thumbnail_url: thumbnailImg,
+      details,
+    } = article;
+
+    const articleDiv = document.createElement("div");
+    articleDiv.classList.add(
+      "card",
+      "lg:card-side",
+      "bg-base-300",
+      "shadow-xl"
+    );
+    articleDiv.innerHTML = `
+    <figure>
+    <img src="${thumbnailImg}" alt="Album" />
+  </figure>
+  <div class="card-body">
+  
+    <h2 class="card-title">${title}<span class="flex gap-1"><div class="badge">${
+      is_todays_pick ? "Todays Pick" : "Latest"
+    }</div>
+      <div class="badge badge-outline">${
+        is_trending ? "Trending Now" : "News"
+      }</div></span></h2>
+    <p>${details.length > 300 ? details.slice(0, 250) + "..." : details}</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Show Details</button>
+    </div>
+  </div>
+    `;
+    articlesContainer.append(articleDiv);
+  });
 };
 loadCategory();
+loadNews("01", "Breaking-News");
