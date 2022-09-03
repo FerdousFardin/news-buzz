@@ -29,7 +29,13 @@ const displayCategory = (categories) => {
     const elementId = categoryName.split(" ").join("-");
     // console.log(elementId);
     const categoryAnchor = document.createElement("a");
-    categoryAnchor.classList.add("tab", "text-xl", "font-medium");
+    categoryAnchor.classList.add(
+      "tab",
+      "text-lg",
+      "lg:text-xl",
+      "font-medium",
+      "lg:font-semibold"
+    );
     // categoryAnchor.classList.toggle("tab-active");
     categoryAnchor.setAttribute(
       "onclick",
@@ -90,7 +96,7 @@ const displayDetails = (article) => {
   modalLabel.classList.add("modal-box", "relative");
   modalLabel.innerHTML = `
   <img src="${mainImg}" alt="Album" />
-  <h3 class="text-lg font-bold my-2">${title}</h3>
+  <h3 class="text-2xl lg:text-3xl font-bold my-2">${title}</h3>
     <p class="py-4">${details}</p>
     <div class="modal-action">
     <label for="details-modal" class="btn">Close</label>
@@ -149,7 +155,7 @@ const displayNews = (articles, elementId) => {
             </figure>
             <div class="card-body">
             
-              <h2 class="card-title">${title}<span class="flex gap-1"><div class="badge lg:badge-lg">${
+              <h2 class="card-title text-2xl lg:text-3xl font-semibold lg:font-bold">${title}<span class="flex gap-1"><div class="badge lg:badge-lg">${
       is_todays_pick ? "Todays Pick" : "Latest"
     }</div>
                 <div class="badge lg:badge-lg badge-outline">${

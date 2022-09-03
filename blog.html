@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/d053072c7b.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>NewsBuzz! Blog</title>
+  </head>
+  <body>
+    <header>
+        <section>
+          <div class="navbar bg-base-100">
+            <div class="flex-1">
+              <a
+                class="h-auto btn btn-ghost hover:bg-base-300 font-semibold lg:font-bold p-1.5 normal-case text-3xl lg:text-5xl"
+                >News
+                <span
+                  class="bg-neutral-content text-base-100 ml-1.5 p-2 rounded-lg"
+                  >Buzz!</span
+                ></a
+              >
+            </div>
+              <div
+                class="flex gap-5 text-base lg:text-xl font-medium lg:font-semibold mr-1"
+              >
+                <a href="index.html" class="pb-1"
+                  >H<span class="hover:border-b-4 hover:border-neutral-content"
+                    >om</span
+                  >e</a
+                >
+                <a href="blog.html" class="pb-1 active-custom"
+                  >B<span class="hover:border-b-4 hover:border-neutral-content"
+                    >lo</span
+                  >g</a
+                >
+              </div>
+              <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                  <div class="w-10 rounded-full">
+                    <img src="https://placeimg.com/80/80/people" />
+                  </div>
+                </label>
+                <ul
+                  tabindex="0"
+                  class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a class="justify-between">
+                      Profile
+                      <span class="badge">New 12+</span>
+                    </a>
+                  </li>
+                  <li><a>Settings</a></li>
+                  <li><a>Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="mx-2"><hr class="divide-y-2" /></section>
+      </header>
+      <main>
+        <section class="container grid my-10 px-10 gap-10">
+            <div class="card lg:card-side bg-base-100 shadow-xl">
+                <figure><img class="img-fluid h-fit w-fit" src="./images/var-vs-let-vs-const-in-javascript.jpg" alt="Album"></figure>
+                <div class="card-body bg-base-300">
+                  <h2 class="card-title text-4xl">What is the difference between var, let and const?</h2>
+                  <p><strong>var</strong> is the traditional way of declaring variables in JavaScript and it is globally scoped, it is considered a bad practice in JavaScript to declare variables with <strong>var</strong> nowadays.
+
+                    <strong>let</strong> and <strong>const</strong> were introduced as a new way to declare variables with <a href="https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015" target="_blank" class="font-bold text-accent-focus tooltip" data-tip="ECMAScript 6">ES6</a>.
+                    
+                    With <strong>let</strong>, you may reassign the value but the variable will only be used inside the block it was defined in and not outside, kind of like having its own scope.
+                    
+                    you cannot reassign the value if you declared the variable as <strong>const</strong>(not to be confused with immutable, a <strong>const</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" class="text-accent font-bold tooltip" data-tip="JavaScript Objects">object</a> can have properties mutated)</p>
+                  <div class="card-actions justify-end">
+                    <a href="https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/" class="btn btn-primary">Learn More <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                  </div>
+                </div>
+              </div>
+            <div class="card lg:card-side bg-base-100 shadow-xl">
+                <figure><img class="img-fluid h-fit w-fit" src="./images/regular-vs-arrow-function.png" alt="Album"></figure>
+                <div class="card-body bg-base-300">
+                  <h2 class="card-title text-4xl">What is the difference between Arrow & Regular function?</h2>
+                  <p>According to <a href="https://developer.mozilla.org/en-US/" class="font-bold" target="_blank">MDN</a>, An arrow function expression is a syntactically compact alternative to a regular function expression, although without its own bindings to the 
+                    <span class="text-accent font-bold">this</span>,
+                    <span class="text-accent font-bold">arguments</span>,
+                    <span class="text-accent font-bold">super</span>, or
+                    <span class="text-accent font-bold">new.target</span>
+                     keywords. Arrow function expressions are ill suited as methods, and they cannot be used as constructors.
+
+                    There are <strong>3</strong> subtle differences in regular functions and arrow functions in JavaScript:
+                    
+                    <strong class="block">No own this bindings,</strong>
+                    <strong class="block">Arrow functions do not have a arguments array,</strong>
+                    <strong class="block">Arrow functions are callable but not constructable.</strong>
+                </p>
+                  <div class="card-actions justify-end">
+                    <a href="https://www.tutorialspoint.com/difference-between-regular-functions-and-arrow-functions-in-javascript" class="btn btn-primary">Learn More <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                  </div>
+                </div>
+              </div>
+            <div class="card lg:card-side bg-base-100 shadow-xl">
+                <figure><img class="img-fluid w-fit" src="./images/template-strings.jpg" alt="Album"></figure>
+                <div class="card-body bg-base-300">
+                  <h2 class="card-title text-4xl">Why do we use template string in Javascript?</h2>
+                  <p>
+                    <strong>Template literals</strong>
+                     are a new feature introduced in 
+                     <a href="https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_%E2%80%93_ECMAScript_2015" target="_blank" class="font-bold text-accent-focus tooltip" data-tip="ECMAScript 6">ES6</a>
+                      It provides an easy way to create multiline strings and perform string interpolation. Template literals are the string literals and allow embedded expressions.
+
+                    Before ES6, 
+                    <strong>template literals</strong>
+                     were called as 
+                   <strong>template strings</strong>.
+                     Unlike quotes in strings, template literals are enclosed by the 
+                     <strong>backtick (` `)</strong>
+                      character (key below the 
+                      <strong>ESC</strong>
+                       key in QWERTY keyboard). Template literals can contain placeholders, which are indicated by the dollar sign and curly braces 
+                       <strong>($(expression})</strong>.
+                        Inside the backticks, if we want to use an expression, then we can place that expression in the 
+                        <strong>($(expression})</strong>.
+                    </p>
+                  <div class="card-actions justify-end">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals" class="btn btn-primary">Learn More <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                  </div>
+                </div>
+              </div>
+        </section>
+      </main>
+      <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>
