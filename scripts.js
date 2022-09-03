@@ -8,12 +8,13 @@ const loadCategory = async () => {
 const displayCategory = (categories) => {
   //   console.log(categories);
   const categoryContainer = document.getElementById("category-nav");
+
   categories.forEach((category) => {
     const { category_id: categoryId, category_name: categoryName } = category;
     const elementId = categoryName.split(" ").join("-");
     // console.log(elementId);
     const categoryAnchor = document.createElement("a");
-    categoryAnchor.classList.add("tab");
+    categoryAnchor.classList.add("tab", "text-xl", "font-medium");
     // categoryAnchor.classList.toggle("tab-active");
     categoryAnchor.setAttribute(
       "onclick",
@@ -39,6 +40,14 @@ const loadDetails = async (postId) => {
   displayDetails(data.data[0]);
 };
 
+const categoryTitle = (category) => {
+  const categoryTitle = document.getElementById("category-title");
+  categoryTitle.textContent = category;
+};
+const totalNewsSet = (num) => {
+  const setField = document.getElementById("total-items");
+  setField.textContent = num ? num : "No";
+};
 const tabActiveToggler = (shouldHave) => {
   const tabs = document.querySelectorAll(".tab");
   tabs.forEach((tab) => {
@@ -64,6 +73,10 @@ const displayDetails = (article) => {
 const displayNews = (articles, elementId) => {
   //active class toggler
   tabActiveToggler(elementId);
+  // totalNewsSet
+  totalNewsSet(articles.length);
+  //Category Title
+  categoryTitle(elementId);
   //spinner
   //display articles
   articles.sort((a, b) => b.total_view - a.total_view);
@@ -120,7 +133,7 @@ const displayNews = (articles, elementId) => {
                   totalView ? totalView + "+" : "No Views"
                 }</div>
                 </button>
-                <label for="my-modal-4" onclick="loadDetails('${postId}')" class="btn btn-primary modal-button">Show Details</label>
+                <label for="my-modal-4" onclick="loadDetails('${postId}')" class="btn btn-primary modal-button"><i class="fa-solid fa-circle-info mr-2"></i> Show Details</label>
                 </div>
     `;
     articlesContainer.append(articleDiv);
