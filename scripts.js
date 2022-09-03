@@ -58,7 +58,9 @@ const categoryTitle = (category) => {
 };
 const totalNewsSet = (num) => {
   const setField = document.getElementById("total-items");
-  setField.textContent = num ? num : "No";
+  setField.innerHTML = num
+    ? num
+    : `<i class="fa-solid fa-triangle-exclamation"></i> No`;
 };
 
 const tabActiveToggler = (shouldHave) => {
@@ -90,11 +92,25 @@ const displayNews = (articles, elementId) => {
   //Category Title
   categoryTitle(elementId);
   //spinner
-
+  searchAtc(true);
   //display articles
   articles.sort((a, b) => b.total_view - a.total_view);
   const articlesContainer = document.getElementById("articles-container");
   articlesContainer.innerHTML = "";
+  if (articles.length === 0) {
+    document.getElementById("not-found-section").classList.remove("hidden");
+    document
+      .getElementById("alert-custom-bg")
+      .classList.add("bg-secondary-focus");
+    document.getElementById("alert-custom-bg").classList.remove("bg-base-300");
+    searchAtc();
+  } else {
+    document.getElementById("not-found-section").classList.add("hidden");
+    document
+      .getElementById("alert-custom-bg")
+      .classList.remove("bg-secondary-focus");
+    document.getElementById("alert-custom-bg").classList.remove("bg-base-300");
+  }
   articles.forEach((article) => {
     const {
       _id: postId,
@@ -135,7 +151,7 @@ const displayNews = (articles, elementId) => {
               </div>
               </div>
               <div class="badge badge-accent lg:badge-lg lg:font-semibold self-center">${
-                name ? name : "Anonymous"
+                name ? name : "No Author Info Found!"
               }</div>
 
               </div>
