@@ -1,3 +1,14 @@
+const searchAtc = (shouldProgress = false) => {
+  const searchAct = document.getElementById("search-active");
+  if (shouldProgress) {
+    searchAct.classList.remove("hidden");
+    searchAct.classList.add("flex");
+  } else {
+    searchAct.classList.add("hidden");
+    searchAct.classList.remove("flex");
+  }
+};
+searchAtc(true);
 const loadCategory = async () => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/news/categories#`
@@ -30,6 +41,7 @@ const loadNews = async (categoryId, elementId) => {
     `https://openapi.programming-hero.com/api/news/category/${categoryId}`
   );
   const data = await res.json();
+
   displayNews(data.data, elementId);
 };
 const loadDetails = async (postId) => {
@@ -48,6 +60,7 @@ const totalNewsSet = (num) => {
   const setField = document.getElementById("total-items");
   setField.textContent = num ? num : "No";
 };
+
 const tabActiveToggler = (shouldHave) => {
   const tabs = document.querySelectorAll(".tab");
   tabs.forEach((tab) => {
@@ -57,7 +70,6 @@ const tabActiveToggler = (shouldHave) => {
   activeTab.classList.add("tab-active-custom");
 };
 const displayDetails = (article) => {
-  // console.log(article);
   const modalContainer = document.getElementById("modal-section");
   modalContainer.textContent = "";
   const { title, image_url: mainImg, details } = article;
@@ -78,6 +90,7 @@ const displayNews = (articles, elementId) => {
   //Category Title
   categoryTitle(elementId);
   //spinner
+
   //display articles
   articles.sort((a, b) => b.total_view - a.total_view);
   const articlesContainer = document.getElementById("articles-container");
@@ -137,6 +150,7 @@ const displayNews = (articles, elementId) => {
                 </div>
     `;
     articlesContainer.append(articleDiv);
+    searchAtc();
   });
 };
 loadCategory();
