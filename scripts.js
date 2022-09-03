@@ -10,11 +10,15 @@ const searchAtc = (shouldProgress = false) => {
 };
 searchAtc(true);
 const loadCategory = async () => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/categories#`
-  );
-  const data = await res.json();
-  displayCategory(data.data.news_category);
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/news/categories#`
+    );
+    const data = await res.json();
+    displayCategory(data.data.news_category);
+  } catch (error) {
+    console.log(error);
+  }
 };
 const displayCategory = (categories) => {
   //   console.log(categories);
@@ -37,19 +41,26 @@ const displayCategory = (categories) => {
   });
 };
 const loadNews = async (categoryId, elementId) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/category/${categoryId}`
-  );
-  const data = await res.json();
-
-  displayNews(data.data, elementId);
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/news/category/${categoryId}`
+    );
+    const data = await res.json();
+    displayNews(data.data, elementId);
+  } catch (error) {
+    console.log(error);
+  }
 };
 const loadDetails = async (postId) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/news/${postId}`
-  );
-  const data = await res.json();
-  displayDetails(data.data[0]);
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/news/${postId}`
+    );
+    const data = await res.json();
+    displayDetails(data.data[0]);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const categoryTitle = (category) => {
@@ -81,6 +92,9 @@ const displayDetails = (article) => {
   <img src="${mainImg}" alt="Album" />
   <h3 class="text-lg font-bold my-2">${title}</h3>
     <p class="py-4">${details}</p>
+    <div class="modal-action">
+    <label for="details-modal" class="btn">Close</label>
+    </div>
   `;
   modalContainer.append(modalLabel);
 };
@@ -117,7 +131,7 @@ const displayNews = (articles, elementId) => {
       others_info: { is_todays_pick, is_trending },
       total_view: totalView,
       title,
-      author: { name, img: authorImg },
+      author: { name, img: authorImg, published_date: publishDate },
       thumbnail_url: thumbnailImg,
       details,
     } = article;
@@ -139,20 +153,27 @@ const displayNews = (articles, elementId) => {
       is_todays_pick ? "Todays Pick" : "Latest"
     }</div>
                 <div class="badge lg:badge-lg badge-outline">${
-                  is_trending ? "Trending Now" : "News"
+                  is_trending ? "Trending" : "News"
                 }</div></span></h2>
               <p>${
                 details.length > 300 ? details.slice(0, 250) + "..." : details
               }</p>
-              <div class="flex gap-2 my-2">
+              <div class="badge h-auto p-2 flex gap-2 my-2">
             <div class="avatar">
               <div class="w-12 rounded-full">
                 <img src="${authorImg}" />
               </div>
               </div>
-              <div class="badge badge-accent lg:badge-lg lg:font-semibold self-center">${
-                name ? name : "No Author Info Found!"
+              <div class="flex flex-col gap-1">
+              <div class="badge badge-accent text-neutral lg:badge-lg font-medium lg:font-semibold ">${
+                name
+                  ? name
+                  : `<i class="fa-solid fa-triangle-exclamation"></i> Not Found!`
               }</div>
+              <div class="badge badge-outline badge-accent text-neutral lg:badge-lg font-medium lg:font-semibold ">${
+                publishDate ? publishDate : "No Time Info Found!"
+              }</div>
+              </div>
 
               </div>
               <div class="card-actions justify-end">
@@ -162,7 +183,7 @@ const displayNews = (articles, elementId) => {
                   totalView ? totalView + "+" : "No Views"
                 }</div>
                 </button>
-                <label for="my-modal-4" onclick="loadDetails('${postId}')" class="btn btn-primary modal-button"><i class="fa-solid fa-circle-info mr-2"></i> Show Details</label>
+                <label for="details-modal" onclick="loadDetails('${postId}')" class="btn btn-primary modal-button"><i class="fa-solid fa-circle-info mr-2"></i> Show Details</label>
                 </div>
     `;
     articlesContainer.append(articleDiv);
